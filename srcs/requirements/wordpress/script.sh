@@ -17,20 +17,20 @@ wp core download --allow-root
 
 mv /var/www/html/wp-config-sample.php /var/www/html/wp-config.php
 
-sed -i -r "s/database/$DB_NAME/1" wp-config.php
-sed -i -r "s/databse_user/$DB_USER/1" wp-config.php
-sed -i -r "s/password/$DB_PASS/1" wp-config.php
-sed -i -r "s/localhost/mariadb/1" wp-config.php
+sudo sed -i -r "s/database/$DB_NAME/1" wp-config.php
+sudo sed -i -r "s/databse_user/$DB_USER/1" wp-config.php
+sudo sed -i -r "s/password/$DB_PASS/1" wp-config.php
+sudo sed -i -r "s/localhost/mariadb/1" wp-config.php
 
 wp core install --url=$DOMAIN_NAME --title=$WP_TITLE --admin_user=$WP_ADMIN --admin_password=$WP_ADMIN_PASS
-wp user create $WP_USER --role=author --user_pass=$WP_PASS --allow-root
+# already registered i think with above command | wp user create $WP_USER --role=author --user_pass=$WP_PASS --allow-root
 wp theme install astra --activate --allow-root
 wp plugin install redis-cache --activate --allow-root
 
-sed -i 's/listen = \/run\/php\/php7.4-fpm.sock/listen = 9000/g' /etc/php/php7.4/fpm/pool.d/www.conf
+sudo sed -i 's/listen = \/run\/php\/php7.4-fpm.sock/listen = 9000/g' /etc/php/7.4/fpm/pool.d/www.conf
 
 mkdir /run/php
 
-wp redis enable --allow-root
+#wp redis enable --allow-root
 
-/usr/sbin/php-fpm7.4 -F
+sudo /usr/sbin/php-fpm7.4 -F
