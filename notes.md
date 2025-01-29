@@ -1,7 +1,9 @@
 
 **INFO**
 
-ssl: /etc/ssl/certs
+cert locations
+ssl: /etc/ssl/certs/smclacke.42.fr.crt
+ssl: /etc/ssl/priavte/smclacke.42.fr.key
 
 
 **TODO**
