@@ -22,6 +22,9 @@ test and restart php:
 sudo systemctl status php7.4-fpm
 sudo systemctl restart php7.4-fpm
 
+edit sites-available then:
+rm /etc/nginx/sites-enabled/wordpress
+sudo ln -s /etc/nginx/sites-available/wordpress /etc/nginx/sites-enabled/
 
 
 **TODO**
