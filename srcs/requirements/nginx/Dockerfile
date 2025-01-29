@@ -6,8 +6,6 @@ RUN 	apt-get update -y && apt-get install -y openssl
 
 RUN 	mkdir /etc/nginx/ssl 
 
-# check cert dirs after setting them up
-# check conf dirs after setup
 
 RUN	openssl req \
 	-newkey rsa:4096 \
@@ -24,7 +22,6 @@ COPY	conf/nginx.conf /etc/nginx/conf.d/default.conf
 RUN		mkdir -p /run/nginx
 
 EXPOSE 	443
-
 
 # makes nginx run in foreground to keep container running
 ENTRYPOINT ["nginx", "-g", "daemon off;"]

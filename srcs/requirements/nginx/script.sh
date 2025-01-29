@@ -24,3 +24,6 @@ systemctl status nginx # / systemctl stop nginx || systemctl start nginx
 ## setting up server block ##
 #--------------------------------------------------------------------------------------------#
 
+# remove default from /etc/nginx/sites-available
+# look at notes - copy this conf and add also to sites-enabled
+
