@@ -10,8 +10,8 @@ sudo mysql_secure_installation
 sudo systemctl start mariadb.service
 sudo mariadb
 {
-	// in mariadb CLI
-	// add user:
+	# in mariadb CLI
+	# add user:
 	GRANT ALL ON *.* TO smclacke@localhost IDENTIFIED BY '<password>' WITH GRANT OPTION;
 	FLUSH PRIVILEGES;
 	exit
