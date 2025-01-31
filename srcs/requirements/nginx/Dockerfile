@@ -13,8 +13,8 @@ RUN	openssl req \
 	-sha256 \
 	-days 365 \
 	-nodes \
-	-out /etc/nginx/ssl/smclacke.42.fr.crt \
-	-keyout /etc/nginx/ssl/smclacke.42.fr.key \
+	#-out /etc/nginx/ssl/smclacke.42.fr.crt \
+	#-keyout /etc/nginx/ssl/smclacke.42.fr.key \
 	-subj "/C=NL/ST=Noord Holland/L=Amsterdam/O=Codam/OU=Sarah/CN=smclacke"
 
 COPY	nginx.conf /etc/nginx/conf.d/default.conf
