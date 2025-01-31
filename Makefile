@@ -6,23 +6,34 @@
 #    By: smclacke <smclacke@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2025/01/17 19:17:58 by smclacke      #+#    #+#                  #
-#    Updated: 2025/01/31 17:22:21 by smclacke      ########   odam.nl          #
+#    Updated: 2025/01/31 17:33:59 by smclacke      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
-all : up
+all		:	up
 
-up : 
-	@docker-compose -f ./srcs/docker-compose.yml up -d
+up		:
+	sudo docker compose -f srcs/docker-compose.yml up -d
 
-down : 
-	@docker-compose -f ./srcs/docker-compose.yml down
+down	:
+	sudo docker compose -f srcs/docker-compose.yml down
 
-stop : 
-	@docker-compose -f ./srcs/docker-compose.yml stop
+stop	:
+	sudo docker compose -f srcs/docker-compose.yml stop
 
-start : 
-	@docker-compose -f ./srcs/docker-compose.yml start
+start	:
+	sudo docker compose -f srcs/docker-compose.yml start
 
-status : 
-	@docker ps
+status	:
+	sudo docker ps
+
+logs	:
+	sudo docker compose -f srcs/docker-compose.yml logs
+
+clean	:
+	sudo docker system prune --all
+
+kill :
+	sudo docker compose -f srcs/docker-compose.yml kill 
+
+re	: down up start
