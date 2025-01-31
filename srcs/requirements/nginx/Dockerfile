@@ -17,7 +17,7 @@ RUN	openssl req \
 	-keyout /etc/nginx/ssl/smclacke.42.fr.key \
 	-subj "/C=NL/ST=Noord Holland/L=Amsterdam/O=Codam/OU=Sarah/CN=smclacke"
 
-COPY	conf/nginx.conf /etc/nginx/conf.d/default.conf
+COPY	nginx.conf /etc/nginx/conf.d/default.conf
 
 RUN		mkdir -p /run/nginx
 

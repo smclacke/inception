@@ -16,14 +16,15 @@ sudo ufw status # check it has been added to the HTTP traffic list, full = ports
 #--------------------------------------------------------------------------------------------#
 
 ## Nginx process management ##
+sudo nginx -t
+systemctl reload nginx
 systemctl status nginx # / systemctl stop nginx || systemctl start nginx 
 # ++ restart, reload, disable, enable
 #--------------------------------------------------------------------------------------------#
 
-
 ## setting up server block ##
 #--------------------------------------------------------------------------------------------#
-
-# remove default from /etc/nginx/sites-available
-# look at notes - copy this conf and add also to sites-enabled
-
+sudo rm /etc/nginx/sites-available/*
+sudo cp nginx.conf /etc/nginx/sites-available/
+sudo rm /etc/nginx/sites-enabled/*
+sudo ln -s /etc/nginx/sites-available/nginx.conf /etc/nginx/sites-enabled/

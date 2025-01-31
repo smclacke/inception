@@ -1,22 +1,8 @@
 #!/bin/bash
 
-sudo apt update
-sudo apt install mariadb-server
-sudo mysql_secure_installation
-{
-	password shit...	
-}
-
 sudo systemctl start mariadb.service
-sudo mariadb
-{
-	# in mariadb CLI
-	# add user:
-	GRANT ALL ON *.* TO smclacke@localhost IDENTIFIED BY '<password>' WITH GRANT OPTION;
-	FLUSH PRIVILEGES;
-	exit
-}
+sudo service mariadb start
+sleep 5
 
-sudo systemctl status mariadb
-sudo mysqladmin version
-mysqladmin -u smclacke -p version
+mariadb -e "CREATE DATABASE IF NOT EXISTS \'${DB_NAME}\';"
+mariadb -e "CREATE USER IF NOT EXISTS \'${DB_USER}\'@'%' IDENTIFIED BY '${DB_PASS}';"
