@@ -29,4 +29,7 @@ sudo ln -s /etc/nginx/sites-available/wordpress /etc/nginx/sites-enabled/
 
 **TODO**
 
-1) 
+1) check www.config listen location WP
+2) check mariadb 50-server.cnf locations etc
+3) nginx script
+4) check what should 

@@ -8,10 +8,10 @@ cd /var/www/html
 rm -rf *
 
 curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
-
 chmod +x wp-cli.phar
-
 mv wp-cli.phar /usr/local/bin/wp
+mkdir /run/php
+cp www.config /etc/php/7.4/fpm/pool.d/www.conf
 
 wp core download --allow-root
 
@@ -29,9 +29,5 @@ wp theme install astra --activate --allow-root
 wp plugin install redis-cache --activate --allow-root
 
 sudo sed -i 's/listen = \/run\/php\/php7.4-fpm.sock/listen = 9000/g' /etc/php/7.4/fpm/pool.d/www.conf
-
-mkdir /run/php
-
-#wp redis enable --allow-root
 
 sudo /usr/sbin/php-fpm7.4 -F

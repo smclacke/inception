@@ -1,7 +1,7 @@
 
 FROM debian:bullseye
 
-RUN apt-get update -y && apt-get install mariadb-server -y
+RUN apt-get update -y && apt-get install -y mariadb-server && mysql_secure_installation
 
 COPY 50-server.cnf /etc/mysql/mariadb.config.d/
 
