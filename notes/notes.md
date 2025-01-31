@@ -32,4 +32,6 @@ sudo ln -s /etc/nginx/sites-available/wordpress /etc/nginx/sites-enabled/
 1) check www.config listen location WP
 2) check mariadb 50-server.cnf locations etc
 3) nginx script
-4) check what should 
+4) check what should be in WP dockerfile and what in entrypoint script
+
+5) what are volumes??
