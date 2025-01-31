@@ -1,5 +1,5 @@
 
-FROM 	debian:bullseye
+FROM	debian:bullseye
 
 RUN		apt-get update -y && apt-get install -y nginx
 RUN 	apt-get update -y && apt-get install -y openssl
