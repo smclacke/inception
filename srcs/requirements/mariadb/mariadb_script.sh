@@ -14,8 +14,8 @@ exit # this or the kill call?
 #kill $(cat /var/run/mysqld/mysqld.pid) #need??
 
 #mysqld #need??
-
-mysqladmin -u $DB_ROOT -p version # this???
+# or mysqladmin?
+mysql -u $DB_ROOT -p version # this???
 
 # these??
 #mysqladmin -u root -p $DB_ROOT_PASS shutdown
