@@ -1,11 +1,10 @@
-version: '3'
+version: "3"
 
 networks:
   inception:
     name: inception
 
 services:
-
   mariadb:
     container_name: mariadb
     build: ./requirements/mariadb
@@ -13,7 +12,8 @@ services:
     volumes:
       - /data/mariadb:/var/lib/mysql
     env: .env
-    networks: inception
+    networks:
+      - inception
     restart: always
 
   nginx:
@@ -26,7 +26,8 @@ services:
     volumes: 
       - wordpress:/var/www/html
     env_file: .env
-    networks: inception
+    networks:
+      - inception
     restart: always
 
   wordpress:
@@ -38,7 +39,8 @@ services:
     volumes: 
       - wordpress:/var/www/html
     env_file: .env
-    networks: inception
+    networks:
+      - inception
     restart: always
         
     
