@@ -41,17 +41,15 @@ sudo docker run -d -v /run/mysqld:/run/mysqld mariadb
 OR 
 sudo docker run -d name_of_image mariadb:latest
 
+sudo docker stop <container>
+sudo docker logs <container>
 
 
 **TODO**
 
 1) check www.config listen location WP
-2) check mariadb 50-server.cnf locations etc
+2) check mariadb 50-server.cnf locations etc - seems good
 3) nginx script
 4) check what should be in WP dockerfile and what in entrypoint script
 5) what are volumes..
 
-**NOW**
-check mariadb script by creating image, trying to run.. different error hopefully?
-look into some todos in files, if maria looks good, nginx is next into a container
-bit by bit painfully lets gooo
