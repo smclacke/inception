@@ -51,3 +51,7 @@ sudo docker run -d name_of_image mariadb:latest
 4) check what should be in WP dockerfile and what in entrypoint script
 5) what are volumes..
 
+**NOW**
+check mariadb script by creating image, trying to run.. different error hopefully?
+look into some todos in files, if maria looks good, nginx is next into a container
+bit by bit painfully lets gooo
