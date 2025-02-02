@@ -49,9 +49,9 @@ sudo docker logs <container>
 
 **TODO**
 
-1) check www.config listen location WP
-2) check mariadb 50-server.cnf locations etc - seems good
-3) nginx script
-4) check what should be in WP dockerfile and what in entrypoint script
+1) todos in files (search @todo + any comments)
+2) documentation
+3) docker log errors
+4) get it up and running in browser like without containers, a happier time
 5) what are volumes..
 
