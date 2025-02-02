@@ -1,5 +1,8 @@
 #!/bin/bash
 
+#@todo
+#if (/var/www + /var/www/html exist, remove and make new) 
+
 mkdir /var/www/
 mkdir /var/www/html
 
@@ -22,7 +25,6 @@ sudo sed -i -r "s/password/$DB_PASS/1" wp-config.php
 sudo sed -i -r "s/localhost/mariadb/1" wp-config.php
 
 wp core install --url=$DOMAIN_NAME --title=$WP_TITLE --admin_user=$WP_ADMIN --admin_password=$WP_ADMIN_PASS
-# check below line
 wp user create $WP_USER --role=author --user_pass=$WP_PASS --allow-root
 wp theme install astra --activate --allow-root
 wp plugin install redis-cache --activate --allow-root
