@@ -2,8 +2,8 @@
 
 #sudo systemctl start mariadb.service
 #sudo service mariadb start
-sudo service mysql start
-sudo mysql_secure_installation #need??
+service mysql start
+mysql_secure_installation #need??
 
 mariadb -e "CREATE DATABASE IF NOT EXISTS \'${DB_NAME}\';"
 mariadb -e "CREATE USER IF NOT EXISTS \'${DB_USER}\'@'%' IDENTIFIED BY '${DB_PASS}';"
