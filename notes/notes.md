@@ -40,6 +40,8 @@ sudo docker build -t maradb .
 sudo docker run -d -v /run/mysqld:/run/mysqld mariadb
 OR 
 sudo docker run -d name_of_image mariadb:latest
+OR (USE THIS ONE)
+sudo docker run --name <name> -d <image/ID>
 
 sudo docker stop <container>
 sudo docker logs <container>
