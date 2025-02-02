@@ -27,6 +27,11 @@ rm /etc/nginx/sites-enabled/wordpress
 sudo ln -s /etc/nginx/sites-available/wordpress /etc/nginx/sites-enabled/
 
 
+***Docker***
+docker ps -a to see all containers
+sudo docker build -t maradb . - build the image
+sudo docker run -d -v /run/mysqld:/run/mysqld mariadb - run the image in container
+
 **TODO**
 
 1) check www.config listen location WP
