@@ -15,7 +15,7 @@ RUN		apt-get update && apt-get -y install \
 COPY	entrypoint.sh /etc/entrypoint.sh
 RUN 	chmod +x /etc/entrypoint.sh
 
-COPY	www.config /etc/php/7.4/fpm/pool.d/www.config
+COPY	www.conf /etc/php/7.4/fpm/pool.d/www.config
 
 EXPOSE	9000
 
