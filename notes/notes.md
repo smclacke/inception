@@ -1,36 +1,47 @@
 
 **INFO**
 
-cert locations:
+**cert locations:**
 ssl: /etc/ssl/certs/smclacke.42.fr.crt
 ssl: /etc/ssl/priavte/smclacke.42.fr.key
 
-error logs:
+**error logs:**
 sudo tail -f /var/log/php7.4-fpm.log
 sudo tail -f /var/log/nginx/error.log
 
-change rights:
+**change rights:**
 sudo find /path/to/wordpress/ -type d -exec chmod 755 {} \;
 sudo find /path/to/wordpress/ -type f -exec chmod 644 {} \;
 sudo chmod 440 /path/to/wordpress/wp-config.php
 
-test and reload nginx:
+**check the scripts for nginx:**
 sudo nginx -t
-sudo systemctl reload nginx
 
-test and restart php:
-sudo systemctl status php7.4-fpm
-sudo systemctl restart php7.4-fpm
+**system control:**
+( nginx | php7.4-fpm | mariadb )
+sudo systemctl status
+sudo systemctl start
+sudo systemctl stop
+sudo systemctl restart
+sudo systemctl kill (check this one)
+sudo systemctl reload (nginx)
 
-edit sites-available then:
+**edit sites-available then:**
 rm /etc/nginx/sites-enabled/wordpress
 sudo ln -s /etc/nginx/sites-available/wordpress /etc/nginx/sites-enabled/
 
-
-***Docker***
+**Docker**
 docker ps -a to see all containers
-sudo docker build -t maradb . - build the image
-sudo docker run -d -v /run/mysqld:/run/mysqld mariadb - run the image in container
+
+- build the image, name + location -
+sudo docker build -t maradb .
+
+- run image in container -
+sudo docker run -d -v /run/mysqld:/run/mysqld mariadb
+OR 
+sudo docker run -d name_of_image mariadb:latest
+
+
 
 **TODO**
 
@@ -38,5 +49,5 @@ sudo docker run -d -v /run/mysqld:/run/mysqld mariadb - run the image in contain
 2) check mariadb 50-server.cnf locations etc
 3) nginx script
 4) check what should be in WP dockerfile and what in entrypoint script
-
 5) what are volumes..
+
