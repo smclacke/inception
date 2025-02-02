@@ -34,4 +34,4 @@ sudo ln -s /etc/nginx/sites-available/wordpress /etc/nginx/sites-enabled/
 3) nginx script
 4) check what should be in WP dockerfile and what in entrypoint script
 
-5) what are volumes??
+5) what are volumes..
