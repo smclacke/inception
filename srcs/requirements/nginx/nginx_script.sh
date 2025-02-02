@@ -28,3 +28,6 @@ sudo rm /etc/nginx/sites-available/*
 sudo cp nginx.conf /etc/nginx/sites-available/
 sudo rm /etc/nginx/sites-enabled/*
 sudo ln -s /etc/nginx/sites-available/nginx.conf /etc/nginx/sites-enabled/
+
+
+## @todo AM I EVEN USING THIS SCRIPT??
