@@ -62,7 +62,7 @@ docker run --name nginx-test -p 8080:80 -d nginx
 
 1) todos in files (search @todo + any comments)
 2) documentation (what did i mean by this?)
-3) lastest snapshot (below)
+3) lastest snapshot (below) -- UPDATE
 5) what are volumes..
 6) docker compose good?
 7) eval prep
@@ -77,4 +77,7 @@ docker run --name nginx-test -p 8080:80 -d nginx
 - nginx log gooci
 - browser? 
 
+-- UPDATE ---
+fixed mariadb issues, broke wordpress again :), it can't connect to database, tried manually creating database etc 
+with no luck... tomorrow we start again...
 
