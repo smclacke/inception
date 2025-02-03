@@ -1,33 +1,47 @@
-#!/bin/bash
+#!/bin/bash -e
 
-mkdir /var/www/
-mkdir /var/www/html
+if [ -f /var/www/html/wp-login.php ]
+then
+	echo "wordpress already installed"
+else
+	echo "downloading wordpress..."
+	wp core download --path="/var/www/html" --allow-root
+fi
 
-cd /var/www/html
+if [ -f /var/www/html/wp-config.php ]
+then
+	echo "wordpress already configured"
+else
+	echo "creating wordpress config..."
 
-rm -rf *
+	cd /var/www/html
+	wp config create --path="/var/www/html" \
+					 --dbname="$DB_NAME" \
+					 --dbuser="$DB_USER" \
+					 --dbpass="$DB_PASS" \
+					 --dbhost="$DB_HOST" \
+					 --allow-root
+	
+	echo "installing wordpress..."
 
-curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
-chmod +x wp-cli.phar
-mkdir /usr/local/bin/wp
-mv wp-cli.phar /usr/local/bin/wp
-cp www.conf /etc/php/7.4/fpm/pool.d/www.conf
+	wp core install --path="/var/www/html" \
+					--title="inception" \
+					--admin_user="$WP_ADMIN" \
+					--admin_password="$WP_ADMIN_PASS" \
+					--admin_email="$WP_ADMIN_EMAIL" \
+					--url="$DOMAIN_NAME" \
+					--skip-email \
+					--allow-root
 
-wp core download --allow-root
+	echo "creating wp user..."
 
-mv /var/www/html/wp-config-sample.php /var/www/html/wp-config.php
+	wp user create "$WP_USER" user@user.com \
+					 --path="/var/www/html" \
+					 --user_name="$WP_USER" \
+					 --user_password="$WP_PASS" \
+					 --allow-root
+fi
 
-sed -i -r "s/database/$DB_NAME/1" wp-config.php
-sed -i -r "s/databse_user/$DB_USER/1" wp-config.php
-sed -i -r "s/password/$DB_PASS/1" wp-config.php
-sed -i -r "s/localhost/mariadb/1" wp-config.php
-
-wp core install --url=$DOMAIN_NAME --title=$WP_TITLE --admin_user=$WP_ADMIN --admin_password=$WP_ADMIN_PASS --allow-root
-wp user create $WP_USER --role=author --user_pass=$WP_PASS --allow-root
-wp theme install astra --activate --allow-root
-wp plugin install redis-cache --activate --allow-root
-
-sed -i 's/listen = \/run\/php\/php7.4-fpm.sock/listen = 9000/g' /etc/php/7.4/fpm/pool.d/www.conf
-mkdir /run/php
+echo "running php7.4-fpm"
 
 /usr/sbin/php-fpm7.4 -F
