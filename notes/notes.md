@@ -53,8 +53,20 @@ docker run --name nginx-test -p 8080:80 -d nginx
 **TODO**
 
 1) todos in files (search @todo + any comments)
-2) documentation
-3) docker log errors
-4) get it up and running in browser like without containers, a happier time
+2) documentation (what did i mean by this?)
+3) lastest snapshot (below)
 5) what are volumes..
+6) docker compose good?
+7) eval prep
+
+---snap ---
+- all programs inactive on machine, only running in containers
+- all containers running 
+- maria having major issues (check log)
+- wordpress having issues with db because of maria issues
+- fix maria to fix wordpress
+- check all logs again
+- nginx log gooci
+- browser? 
+
 
