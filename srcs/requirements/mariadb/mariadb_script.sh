@@ -1,6 +1,6 @@
 #!/bin/bash -e
 
-if [ -d "/var/lib/mysql/$DB_NAME" ]
+if [ -d "/var/lib/mysql/$MYSQL_DATABASE" ]
 then
 	echo "database already exists, continuing"
 else
@@ -8,9 +8,9 @@ else
 
 	{
 		echo "FLUSH PRIVILEGES;"
-		echo "CREATE DATABASE IF NOT EXISTS $DB_NAME;"
-		echo "CREATE USER IF NOT EXISTS $DB_USER@'%' IDENTIFIED BY '$DB_PASS';"
-		echo "GRANT ALL ON *.* TO $DB_USER@'%' IDENTIFIED BY '$DB_PASS';"
+		echo "CREATE DATABASE IF NOT EXISTS $MYSQL_DATABASE;"
+		echo "CREATE USER IF NOT EXISTS $MYSQL_USER@'%' IDENTIFIED BY '$MYSQL_PASSWORD';"
+		echo "GRANT ALL ON *.* TO $MYSQL_USER@'%' IDENTIFIED BY '$MYSQL_PASSWORD';"
 		echo "FLUSH PRIVILEGES;"
 	} | mysqld --bootstrap
 

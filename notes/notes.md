@@ -47,8 +47,13 @@ sudo docker run --name <name> -d <image/ID>
 sudo docker stop <container>
 sudo docker logs <container>
 
+sudo docker volume create <volume name>
 sudo docker volume ls
 sudo docker volume rm
+
+sudo docker network create <network name>
+sudo docker network ls
+sudo docker network rm
 
 **TEST nginx on its own in container**
 docker run --name nginx-test -p 8080:80 -d nginx

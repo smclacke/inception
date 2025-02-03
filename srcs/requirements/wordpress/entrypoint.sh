@@ -23,29 +23,28 @@ else
 
 	cd /var/www/html
 	wp config create --path="/var/www/html" \
-					 --dbname="$DB_NAME" \
-					 --dbuser="$DB_USER" \
-					 --dbpass="$DB_PASS" \
-					 --dbhost="$DB_HOST" \
+					 --dbname="$WORDPRESS_DB_NAME" \
+					 --dbuser="$WORDPRESS_DB_USER" \
+					 --dbpass="$WORDPRESS_DB_PASSWORD" \
+					 --dbhost="$WORDPRESS_DB_HOST" \
 					 --allow-root
 	
 	echo "installing wordpress..."
 
 	wp core install --path="/var/www/html" \
 					--title="inception" \
-					--admin_user="$WP_ADMIN" \
-					--admin_password="$WP_ADMIN_PASS" \
-					--admin_email="$WP_ADMIN_EMAIL" \
+					--admin_user="$WORDPRESS_ADMIN_NAME" \
+					--admin_password="$WORDPRESS_ADMIN_PASSWORD" \
+					--admin_email="$WORDPRESS_ADMIN_EMAIL" \
 					--url="$DOMAIN_NAME" \
 					--skip-email \
 					--allow-root
 
 	echo "creating wp user..."
 
-	wp user create "$WP_USER" user@user.com \
+	wp user create "$WORDPRESS_USER_NAME" user@user.com \
 					 --path="/var/www/html" \
-					 --user_name="$WP_USER" \
-					 --user_password="$WP_PASS" \
+					 --user_password="$WORDPRESS_USER_PASSWORD" \
 					 --allow-root
 fi
 
