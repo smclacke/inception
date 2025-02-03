@@ -47,6 +47,9 @@ sudo docker stop <container>
 sudo docker logs <container>
 
 
+**TEST nginx on its own in container**
+docker run --name nginx-test -p 8080:80 -d nginx
+
 **TODO**
 
 1) todos in files (search @todo + any comments)
