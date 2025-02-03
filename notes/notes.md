@@ -8,6 +8,7 @@ ssl: /etc/ssl/priavte/smclacke.42.fr.key
 **error logs:**
 sudo tail -f /var/log/php7.4-fpm.log
 sudo tail -f /var/log/nginx/error.log
+sudo tail -f /var/log/mysql/error.log
 
 **change rights:**
 sudo find /path/to/wordpress/ -type d -exec chmod 755 {} \;
@@ -46,6 +47,8 @@ sudo docker run --name <name> -d <image/ID>
 sudo docker stop <container>
 sudo docker logs <container>
 
+sudo docker volume ls
+sudo docker volume rm
 
 **TEST nginx on its own in container**
 docker run --name nginx-test -p 8080:80 -d nginx

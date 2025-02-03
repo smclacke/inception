@@ -1,12 +1,20 @@
-#!/bin/bash
+#!/bin/bash -e
 
-service mysql start
-mysql_secure_installation
+if [ -d "/var/lib/mysql/$DB_NAME" ]
+then
+	echo "database already exists, continuing"
+else
+	echo "creating default database and user"
 
-mariadb -e "CREATE DATABASE IF NOT EXISTS \'${DB_NAME}\';"
-mariadb -e "CREATE USER IF NOT EXISTS \'${DB_USER}\'@'%' IDENTIFIED BY '${DB_PASS}';"
-mariadb -e "GRANT ALL PRIVILEGES ON ${DB_NAME}.* TO \'${DB_USER}\'@'%';"
-mariadb -e "FLUSH PRIVILEGES;"
-exit
+	{
+		echo "FLUSH PRIVILEGES;"
+		echo "CREATE DATABASE IF NOT EXISTS $DB_NAME;"
+		echo "CREATE USER IF NOT EXISTS $DB_USER@'%' IDENTIFIED BY '$DB_PASS';"
+		echo "GRANT ALL ON *.* TO $DB_USER@'%' IDENTIFIED BY '$DB_PASS';"
+		echo "FLUSH PRIVILEGES;"
+	} | mysqld --bootstrap
 
-mysql -u $DB_ROOT -p version
+	echo "created default database and user"
+fi
+
+exec "$@"

@@ -4,7 +4,7 @@ if [ -f /var/www/html ]
 then
 	echo "directory exists, continue"
 else
-	mkdir /var/www/html
+	mkdir -p /var/www/html
 fi
 
 if [ -f /var/www/html/wp-login.php ]
