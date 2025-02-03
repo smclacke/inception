@@ -1,5 +1,12 @@
 #!/bin/bash -e
 
+if [ -f /var/www/html ]
+then
+	echo "directory exists, continue"
+else
+	mkdir /var/www/html
+fi
+
 if [ -f /var/www/html/wp-login.php ]
 then
 	echo "wordpress already installed"
