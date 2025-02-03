@@ -1,8 +1,5 @@
 #!/bin/bash
 
-#@todo
-#if (/var/www + /var/www/html exist, remove and make new) 
-
 mkdir /var/www/
 mkdir /var/www/html
 
