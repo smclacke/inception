@@ -82,3 +82,7 @@ docker run --name nginx-test -p 8080:80 -d nginx
 fixed mariadb issues, broke wordpress again :), it can't connect to database, tried manually creating database etc 
 with no luck... tomorrow we start again...
 
+
+---- NOW NOW NOW
+browser needs to work..
+last log errors
