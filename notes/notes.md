@@ -65,6 +65,7 @@ docker run --name nginx-test -p 8080:80 -d nginx
 3) lastest snapshot (below) -- UPDATE
 5) what are volumes..
 6) docker compose good?
+66) env mariadb/mysql variables...
 7) eval prep
 
 ---snap ---

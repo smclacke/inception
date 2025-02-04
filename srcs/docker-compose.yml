@@ -13,7 +13,8 @@ services:
       - mariadb:/var/lib/mysql
     networks:
       - inception
-    environment: .env
+    environment:
+      - .env
     restart: always
 
   nginx:
