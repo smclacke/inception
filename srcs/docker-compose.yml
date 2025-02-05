@@ -1,25 +1,23 @@
 
-networks:
-  inception:
-    name: inception
-
 services:
   mariadb:
     container_name: mariadb
     build: ./requirements/mariadb
     image: mariadb
-    hostname: mariadb
     volumes:
       - mariadb:/var/lib/mysql
     networks:
       - inception
+    env_file: .env
     environment:
-      - .env
+      - MARIADB_USER=${MARIADB_USER}
+      - MARIADB_PASSWORD=${MARIADB_PASSWORD}
+      - MARIADB_DATABASE=${MARIADB_DATABASE}
+      - MARIADB_ROOT_PASSWORD=${MARIADB_ROOT_PASSWORD}
     restart: always
 
   nginx:
     container_name: nginx
-    hostname: nginx
     image: nginx
     build: ./requirements/nginx
     ports:
@@ -36,17 +34,28 @@ services:
   wordpress:
     container_name: wordpress
     build: ./requirements/wordpress
-    hostname: wordpress
     image: wordpress
     depends_on:
       - mariadb
     volumes: 
       - www:/var/www/html
     env_file: .env
+    environment:
+      - WORDPRESS_DB_USER=${WORDPRESS_DB_USER}
+      - WORDPRESS_DB_PASSWORD=${WORDPRESS_DB_PASSWORD}
+      - WORDPRESS_DB_NAME=${WORDPRESS_DB_NAME}
+      - WORDPRESS_ADMIN_NAME=${WORDPRESS_ADMIN_NAME}
+      - WORDPRESS_ADMIN_PASSWORD=${WORDPRESS_ADMIN_PASSWORD}
+      - WORDPRESS_USER_NAME=${WORDPRESS_USER_NAME}
+      - WORDPRESS_USER_PASSWORD=${WORDPRESS_USER_PASSWORD}
     networks:
       - inception
     restart: always
         
+
+networks:
+  inception:
+    name: inception
     
 volumes:
   mariadb:
@@ -56,6 +65,7 @@ volumes:
       type: none
       o: bind
       device: /var/lib/mysql
+      # ~/data/db
 
   www:
     name: wordpress
@@ -64,3 +74,4 @@ volumes:
       type: none
       o: bind
       device: /var/www/html
+      #~/data/wp

@@ -62,27 +62,13 @@ docker run --name nginx-test -p 8080:80 -d nginx
 
 1) todos in files (search @todo + any comments)
 2) documentation (what did i mean by this?)
-3) lastest snapshot (below) -- UPDATE
 5) what are volumes..
 6) docker compose good?
 66) env mariadb/mysql variables...
 7) eval prep
 
----snap ---
-- all programs inactive on machine, only running in containers
-- all containers running 
-- maria having major issues (check log)
-- wordpress having issues with db because of maria issues
-- fix maria to fix wordpress
-- check all logs again
-- nginx log gooci
-- browser? 
-
--- UPDATE ---
-fixed mariadb issues, broke wordpress again :), it can't connect to database, tried manually creating database etc 
-with no luck... tomorrow we start again...
-
 
 ---- NOW NOW NOW
 browser needs to work..
 last log errors
+dont forget the /data thing from sub pdf

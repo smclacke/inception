@@ -23,5 +23,4 @@ RUN		mkdir -p /run/nginx
 
 EXPOSE 	443
 
-# makes nginx run in foreground to keep container running
 ENTRYPOINT ["nginx", "-g", "daemon off;"]
