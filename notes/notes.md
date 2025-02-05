@@ -88,4 +88,4 @@ dont forget the /data thing from sub pdf
 --- SITUATION
 - all services removed from machine
 - only docker and ufw running
-- 
+- remove volumes or just leave?
