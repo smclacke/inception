@@ -84,3 +84,8 @@ docker run --name nginx-test -p 8080:80 -d nginx
 browser needs to work..
 last log errors
 dont forget the /data thing from sub pdf
+
+--- SITUATION
+- all services removed from machine
+- only docker and ufw running
+- 
