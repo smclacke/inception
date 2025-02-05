@@ -6,7 +6,7 @@
 #    By: smclacke <smclacke@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2025/01/17 19:17:58 by smclacke      #+#    #+#                  #
-#    Updated: 2025/02/05 12:26:54 by smclacke      ########   odam.nl          #
+#    Updated: 2025/02/05 12:27:40 by smclacke      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,13 +36,11 @@ psa :
 logs	:
 	sudo docker-compose -f srcs/docker-compose.yml logs
 
-clean	:
+clean	: stop
+	sudo docker rm wordpress nginx mariadb
 	sudo docker system prune --all
 	sudo docker volume rm mariadb wordpress
 	sudo docker network rm inception
-
-remove	:
-	sudo docker rm wordpress nginx mariadb
 
 kill :
 	sudo docker-compose -f srcs/docker-compose.yml kill 
