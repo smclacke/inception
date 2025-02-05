@@ -55,8 +55,20 @@ sudo docker network create <network name>
 sudo docker network ls
 sudo docker network rm
 
+**commands_explained**
+docker kill will kill a container
+docker rm will clean up a terminated container
+
+stop: stop services only
+down: stop and remove containers and networks (optionally images and volumes as well)
+down --volumes: down and remove volumes
+down --rmi <all/local>: down and remove images
+
+
+
 **TEST nginx on its own in container**
 docker run --name nginx-test -p 8080:80 -d nginx
+
 
 **TODO**
 
