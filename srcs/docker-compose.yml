@@ -64,7 +64,8 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: /var/lib/mysql
+      device: ~/data/db
+      #device: /var/lib/mysql
       # ~/data/db
 
   www:
@@ -73,5 +74,6 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: /var/www/html
+      device: ~/data/wp
+      #device: /var/www/html
       #~/data/wp

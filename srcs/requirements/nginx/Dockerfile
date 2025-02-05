@@ -6,7 +6,6 @@ RUN 	apt-get update -y && apt-get install -y openssl
 
 RUN 	mkdir /etc/nginx/ssl 
 
-
 RUN	openssl req \
 	-newkey rsa:4096 \
 	-x509 \
