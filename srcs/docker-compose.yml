@@ -1,4 +1,25 @@
 
+networks:
+  inception:
+    name: inception
+    
+volumes:
+  mariadb:
+    name: mariadb
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/smclacke/data/mariadb
+
+  wordpress:
+    name: wordpress
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/smclacke/data/wordpress
+
 services:
   mariadb:
     container_name: mariadb
@@ -25,7 +46,7 @@ services:
     depends_on:
       - wordpress
     volumes: 
-      - www:/var/www/html
+      - wordpress:/var/www/html
     env_file: .env
     networks:
       - inception
@@ -38,7 +59,7 @@ services:
     depends_on:
       - mariadb
     volumes: 
-      - www:/var/www/html
+      - wordpress:/var/www/html
     env_file: .env
     environment:
       - WORDPRESS_DB_USER=${WORDPRESS_DB_USER}
@@ -52,28 +73,3 @@ services:
       - inception
     restart: always
         
-
-networks:
-  inception:
-    name: inception
-    
-volumes:
-  mariadb:
-    name: mariadb
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: ~/data/db
-      #device: /var/lib/mysql
-      # ~/data/db
-
-  www:
-    name: wwww
-    driver: local
-    driver_opts:
-      type: none
-      o: bind
-      device: ~/data/wp
-      #device: /var/www/html
-      #~/data/wp
