@@ -29,5 +29,3 @@ cp nginx.conf /etc/nginx/sites-available/
 rm /etc/nginx/sites-enabled/*
 ln -s /etc/nginx/sites-available/nginx.conf /etc/nginx/sites-enabled/
 
-
-## @todo AM I EVEN USING THIS SCRIPT??

@@ -16,10 +16,9 @@ RUN	openssl req \
 	-keyout /etc/ssl/private/smclacke.42.fr.key \
 	-subj "/C=NL/ST=Noord Holland/L=Amsterdam/O=Codam/OU=Sarah/CN=smclacke"
 
-COPY	nginx.conf /etc/nginx/conf.d/default.conf
+#COPY	nginx.conf /etc/nginx/conf.d/default.conf
 COPY	nginx.conf /etc/nginx/sites-available/default
-
-RUN		mkdir -p /run/nginx
+RUN 	ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/
 
 EXPOSE 	443
 

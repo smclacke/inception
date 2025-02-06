@@ -22,7 +22,7 @@ sudo nginx -t
 ( nginx | php7.4-fpm | mariadb )
 sudo systemctl status
 sudo systemctl start
-sudo systemctl stop
+sudo systemctl stop 
 sudo systemctl restart
 sudo systemctl kill (check this one)
 sudo systemctl reload (nginx)
