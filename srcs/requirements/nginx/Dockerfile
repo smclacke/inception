@@ -17,6 +17,7 @@ RUN	openssl req \
 	-subj "/C=NL/ST=Noord Holland/L=Amsterdam/O=Codam/OU=Sarah/CN=smclacke"
 
 COPY	nginx.conf /etc/nginx/conf.d/default.conf
+COPY	nginx.conf /etc/nginx/sites-available/default
 
 RUN		mkdir -p /run/nginx
 
