@@ -74,21 +74,5 @@ docker run --name nginx-test -p 8080:80 -d nginx
 
 1) todos in files (search @todo + any comments)
 2) documentation (what did i mean by this?)
-5) what are volumes..
-6) docker compose good?
-66) env mariadb/mysql variables...
+3) wordpress, come on...
 7) eval prep
-
-
----- NOW NOW NOW
-browser needs to work..
-last log errors
-dont forget the /data thing from sub pdf
-
---- SITUATION
-- all services removed from machine
-- only docker and ufw running
-
-
-maybe shouldnt have removed everything...
-going to reinstall starting with php, keep erroring for make and individual, back to a working version and then logs and browser...
