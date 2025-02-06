@@ -69,6 +69,15 @@ down --rmi <all/local>: down and remove images
 **TEST nginx on its own in container**
 docker run --name nginx-test -p 8080:80 -d nginx
 
+**stuff i want in vm**
+sudo
+ssh
+ssl
+hosts -> add smclacke.42.fr
+github
+second browser
+vscode
+
 
 **TODO**
 
