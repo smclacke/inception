@@ -88,4 +88,7 @@ dont forget the /data thing from sub pdf
 --- SITUATION
 - all services removed from machine
 - only docker and ufw running
-- remove volumes or just leave?
+
+
+maybe shouldnt have removed everything...
+going to reinstall starting with php, keep erroring for make and individual, back to a working version and then logs and browser...
