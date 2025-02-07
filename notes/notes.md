@@ -74,6 +74,7 @@ sudo
 ssh
 ssl
 hosts -> add smclacke.42.fr
+git
 github
 second browser
 vscode
