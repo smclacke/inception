@@ -1,7 +1,5 @@
 FROM	debian:bullseye
 
-RUN echo "ServerName localhost" >> /etc/php/7.4/fpm/pool.d/www.config
-
 RUN		apt-get update && apt-get -y install \
 			wget \
 			curl \
