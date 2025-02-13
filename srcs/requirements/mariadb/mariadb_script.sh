@@ -17,4 +17,6 @@ else
 	echo "created default database and user"
 fi
 
+sleep 5
+
 exec "$@"
