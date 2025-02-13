@@ -73,6 +73,7 @@ docker run --name nginx-test -p 8080:80 -d nginx
 sudo
 ssh
 ssl
+mkcerts
 hosts -> add smclacke.42.fr
 git
 github

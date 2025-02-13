@@ -23,9 +23,9 @@ else
 
 	cd /var/www/html
 	wp config create --path="/var/www/html" \
-					 --dbname="$WORDPRESS_DB_NAME" \
-					 --dbuser="$WORDPRESS_DB_USER" \
-					 --dbpass="$WORDPRESS_DB_PASSWORD" \
+					 --dbname="$MARIADB_DATABASE" \
+					 --dbuser="$MARIADB_USER" \
+					 --dbpass="$MARIADB_PASSWORD" \
 					 --dbhost="$WORDPRESS_DB_HOST" \
 					 --allow-root
 	
