@@ -6,7 +6,7 @@
 #    By: smclacke <smclacke@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2025/01/17 19:17:58 by smclacke      #+#    #+#                  #
-#    Updated: 2025/02/16 17:55:52 by smclacke      ########   odam.nl          #
+#    Updated: 2025/02/16 18:52:49 by smclacke      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,7 @@ logs	:
 
 clean	: stop
 	sudo docker rm wordpress nginx mariadb
-	sudo docker volume rm mariadb wordpress
+	sudo docker volume rm wordpress mariadb
 	sudo docker system prune --all
 
 kill :

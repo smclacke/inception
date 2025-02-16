@@ -44,7 +44,6 @@ else
 
 	wp user create "$WORDPRESS_USER_NAME" user@user.com \
 					 --path="/var/www/html" \
-					 --user_password="$WORDPRESS_USER_PASSWORD" \
 					 --allow-root
 fi
 
