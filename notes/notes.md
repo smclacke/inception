@@ -82,6 +82,9 @@ github
 second browser
 vscode
 
+apt-get install systemd
+ -- for systemctl command
+
 **important**
 /etc/hosts - change file so locahost has smclacken.42.fr also
 
