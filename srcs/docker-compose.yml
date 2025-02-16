@@ -1,10 +1,13 @@
 
-version: "3"
-
+# creating a network to allow communication between containers
+# so they can connect and interact with each other
 networks:
   inception:
     name: inception
-    
+    external: false
+    driver: bridge
+  
+# directories shared between containers and machine (local driver)
 volumes:
   mariadb:
     name: mariadb
@@ -22,6 +25,7 @@ volumes:
       o: bind
       device: /home/smclacke/data/wordpress
 
+# the containers ordered based on dependancies
 services:
   mariadb:
     container_name: mariadb
@@ -31,12 +35,35 @@ services:
       - mariadb:/var/lib/mysql
     networks:
       - inception
-    env_file: .env
+    env_file:
+      - .env
     environment:
       - MARIADB_USER=${MARIADB_USER}
       - MARIADB_PASSWORD=${MARIADB_PASSWORD}
       - MARIADB_DATABASE=${MARIADB_DATABASE}
       - MARIADB_ROOT_PASSWORD=${MARIADB_ROOT_PASSWORD}
+    restart: unless-stopped
+
+  wordpress:
+    container_name: wordpress
+    build: ./requirements/wordpress
+    image: wordpress
+    depends_on:
+      - mariadb
+    volumes: 
+      - wordpress:/var/www/html
+    env_file:
+      - .env
+    environment:
+      - WORDPRESS_DB_USER=${WORDPRESS_DB_USER}
+      - WORDPRESS_DB_PASSWORD=${WORDPRESS_DB_PASSWORD}
+      - WORDPRESS_DB_NAME=${WORDPRESS_DB_NAME}
+      - WORDPRESS_ADMIN_NAME=${WORDPRESS_ADMIN_NAME}
+      - WORDPRESS_ADMIN_PASSWORD=${WORDPRESS_ADMIN_PASSWORD}
+      - WORDPRESS_USER_NAME=${WORDPRESS_USER_NAME}
+      - WORDPRESS_USER_PASSWORD=${WORDPRESS_USER_PASSWORD}
+    networks:
+      - inception
     restart: unless-stopped
 
   nginx:
@@ -49,29 +76,9 @@ services:
       - wordpress
     volumes: 
       - wordpress:/var/www/html
-    env_file: .env
+    env_file:
+      - .env
     networks:
       - inception
     restart: always
-
-  wordpress:
-    container_name: wordpress
-    build: ./requirements/wordpress
-    image: wordpress
-    depends_on:
-      - mariadb
-    volumes: 
-      - wordpress:/var/www/html
-    env_file: .env
-    environment:
-      - WORDPRESS_DB_USER=${WORDPRESS_DB_USER}
-      - WORDPRESS_DB_PASSWORD=${WORDPRESS_DB_PASSWORD}
-      - WORDPRESS_DB_NAME=${WORDPRESS_DB_NAME}
-      - WORDPRESS_ADMIN_NAME=${WORDPRESS_ADMIN_NAME}
-      - WORDPRESS_ADMIN_PASSWORD=${WORDPRESS_ADMIN_PASSWORD}
-      - WORDPRESS_USER_NAME=${WORDPRESS_USER_NAME}
-      - WORDPRESS_USER_PASSWORD=${WORDPRESS_USER_PASSWORD}
-    networks:
-      - inception
-    restart: unless-stopped
         

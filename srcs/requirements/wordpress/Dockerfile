@@ -1,15 +1,13 @@
 FROM	debian:bullseye
 
-RUN		apt-get update && apt-get -y install \
+RUN		apt-get update -y \
+			&& apt-get -y install \
 			wget \
 			curl \
 			bash \
-			php \
-			php-cgi \
-			php-mysql \
-			php-fpm \
-			php-pdo \
-			php-gd php-cli \
+			php7.4 \
+			php7.4-mysql \
+			php7.4-fpm \
 			mariadb-client
 
 COPY	entrypoint.sh /etc/entrypoint.sh
@@ -21,7 +19,7 @@ RUN 	curl -L https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cl
 		&& chmod +x wp-cli.phar \
 		&& mv wp-cli.phar /usr/local/bin/wp
 
-RUN		mkdir /run/php
+#RUN		mkdir /run/php
 
 EXPOSE	9000
 

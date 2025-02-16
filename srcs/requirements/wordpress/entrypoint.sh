@@ -50,4 +50,4 @@ fi
 
 echo "running php7.4-fpm"
 
-/usr/sbin/php-fpm7.4 -F
+exec /usr/sbin/php-fpm7.4 -F

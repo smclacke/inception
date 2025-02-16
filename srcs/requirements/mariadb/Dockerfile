@@ -1,7 +1,9 @@
 
 FROM debian:bullseye
 
-RUN apt-get update -y && apt-get install mariadb-server -y
+RUN apt-get update -y \
+		&& apt-get install -y mariadb-server \
+		&& apt-get clean
 
 COPY mariadb_script.sh /etc/mariadb_script.sh 
 RUN chown mysql:root /etc/mariadb_script.sh 
