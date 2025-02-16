@@ -72,7 +72,6 @@ services:
     ports:
       - "3306:3306"
     command: mysqld --defaults-file=/etc/mysql/mariadb.conf.d/50-server.cnf --bind-address=0.0.0.0
-    #command: --bind-address=0.0.0.0
     networks:
       - inception
     env_file:

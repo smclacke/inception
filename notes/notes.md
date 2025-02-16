@@ -27,6 +27,9 @@ sudo systemctl restart
 sudo systemctl kill (check this one)
 sudo systemctl reload (nginx)
 
+** docker-compose down && docker-compose up -d **
+instead of make clean and make everytime
+
 **edit sites-available then:**
 rm /etc/nginx/sites-enabled/wordpress
 sudo ln -s /etc/nginx/sites-available/wordpress /etc/nginx/sites-enabled/
