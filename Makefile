@@ -6,11 +6,14 @@
 #    By: smclacke <smclacke@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2025/01/17 19:17:58 by smclacke      #+#    #+#                  #
-#    Updated: 2025/02/13 17:07:18 by smclacke      ########   odam.nl          #
+#    Updated: 2025/02/16 15:40:58 by smclacke      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
-all		:	up
+all		:	build up
+
+build	:
+	sudo docker-compose -f srcs/docker-compose.yml build
 
 up		:
 	sudo docker-compose -f srcs/docker-compose.yml up -d
