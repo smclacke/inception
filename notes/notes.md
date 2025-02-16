@@ -74,12 +74,14 @@ sudo
 ssh
 ssl
 mkcerts
-hosts -> add smclacke.42.fr
+hosts -> add smclacke.42.fr to localhost
 git
 github
 second browser
 vscode
 
+**important**
+/etc/hosts - change file so locahost has smclacken.42.fr also
 
 **TODO**
 
