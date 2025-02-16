@@ -55,6 +55,8 @@ sudo docker network create <network name>
 sudo docker network ls
 sudo docker network rm [optional <network_name>]
 
+docker exec -it <image> <bash>
+
 **commands_explained**
 docker kill will kill a container
 docker rm will clean up a terminated container
@@ -84,8 +86,3 @@ vscode
 /etc/hosts - change file so locahost has smclacken.42.fr also
 
 **TODO**
-
-1) todos in files (search @todo + any comments)
-2) documentation (what did i mean by this?)
-3) wordpress, come on...
-7) eval prep
