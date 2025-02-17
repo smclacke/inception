@@ -75,20 +75,27 @@ down --rmi <all/local>: down and remove images
 docker run --name nginx-test -p 8080:80 -d nginx
 
 **stuff i want in vm**
-sudo
-ssh
-ssl
-mkcerts
-hosts -> add smclacke.42.fr to localhost
-git
-github
-second browser
-vscode
+sudo -
+make -
+ufw -
+docker -
+docker-compose -
+ssh / sshd -
 
-apt-get install systemd
+ssl ?
+make user certs?
+
+mkcerts -
+hosts -> add smclacke.42.fr to localhost -
+git -
+github -
+second browser -
+vscode -
+
+apt-get install systemd -
  -- for systemctl command
 
 **important**
-/etc/hosts - change file so locahost has smclacken.42.fr also
+/etc/hosts - change file so locahost has smclacken.42.fr also -
 
 **TODO**
