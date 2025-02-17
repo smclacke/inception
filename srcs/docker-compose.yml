@@ -1,3 +1,56 @@
+services:
+  mariadb:
+    container_name: mariadb
+    build: requirements/mariadb
+    image: mariadb
+    volumes:
+      - mariadb:/var/lib/mysql
+    command: mysqld --defaults-file=/etc/mysql/mariadb.conf.d/50-server.cnf --bind-address=0.0.0.0
+    networks:
+      - inception
+    env_file:
+      - .env
+    environment:
+      - MARIADB_ROOT_PASSWORD=${MARIADB_ROOT_PASSWORD}
+      - MARIADB_DATABASE=${MARIADB_DATABASE}
+      - MARIADB_USER=${MARIADB_USER}
+      - MARIADB_PASSWORD=${MARIADB_PASSWORD}
+    restart: unless-stopped
+
+  wordpress:
+    container_name: wordpress
+    build: requirements/wordpress
+    image: wordpress
+    depends_on:
+      - mariadb
+    volumes: 
+      - wordpress:/var/www/html
+    env_file:
+      - .env
+    environment:
+      - WORDPRESS_DB_HOST=${WORDPRESS_DB_HOST}
+      - WORDPRESS_DB_USER=${WORDPRESS_DB_USER}
+      - WORDPRESS_DB_PASSWORD=${WORDPRESS_DB_PASSWORD}
+      - WORDPRESS_DB_NAME=${WORDPRESS_DB_NAME}
+    networks:
+      - inception
+    restart: unless-stopped
+
+  nginx:
+    container_name: nginx
+    image: nginx
+    build: requirements/nginx
+    ports:
+      - "443:443"
+    depends_on:
+      - wordpress
+    volumes: 
+      - wordpress:/var/www/html
+    env_file:
+      - .env
+    networks:
+      - inception
+    restart: unless-stopped
 
 # creating a network to allow communication between containers
 # so they can connect and interact with each other
@@ -15,7 +68,7 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: /home/smclacke/data/mariadb
+      device: ${HOME}/data/mariadb
 
   wordpress:
     name: wordpress
@@ -23,62 +76,4 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: /home/smclacke/data/wordpress
-
-# the containers ordered based on dependancies
-services:
-
-  nginx:
-    container_name: nginx
-    image: nginx
-    build: ./requirements/nginx
-    ports:
-      - "443:443"
-    depends_on:
-      - wordpress
-    volumes: 
-      - wordpress:/var/www/html
-    env_file:
-      - .env
-    networks:
-      - inception
-    restart: always
-
-  wordpress:
-    container_name: wordpress
-    build: ./requirements/wordpress
-    image: wordpress
-    depends_on:
-      - mariadb
-    volumes: 
-      - wordpress:/var/www/html
-    env_file:
-      - .env
-    environment:
-      - WORDPRESS_DB_HOST=${WORDPRESS_DB_HOST}
-      - WORDPRESS_DB_USER=${WORDPRESS_DB_USER}
-      - WORDPRESS_DB_PASSWORD=${WORDPRESS_DB_PASSWORD}
-      - WORDPRESS_DB_NAME=${WORDPRESS_DB_NAME}
-    networks:
-      - inception
-    restart: unless-stopped
-
-  mariadb:
-    container_name: mariadb
-    build: ./requirements/mariadb
-    image: mariadb
-    volumes:
-      - mariadb:/var/lib/mysql
-    #ports:
-    #  - "3306:3306"
-    command: mysqld --defaults-file=/etc/mysql/mariadb.conf.d/50-server.cnf --bind-address=0.0.0.0
-    networks:
-      - inception
-    env_file:
-      - .env
-    environment:
-      - MARIADB_ROOT_PASSWORD=${MARIADB_ROOT_PASSWORD}
-      - MARIADB_DATABASE=${MARIADB_DATABASE}
-      - MARIADB_USER=${MARIADB_USER}
-      - MARIADB_PASSWORD=${MARIADB_PASSWORD}
-    restart: unless-stopped
+      device: ${HOME}/data/wordpress

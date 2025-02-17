@@ -6,39 +6,34 @@
 #    By: smclacke <smclacke@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2025/01/17 19:17:58 by smclacke      #+#    #+#                  #
-#    Updated: 2025/02/16 18:52:49 by smclacke      ########   odam.nl          #
+#    Updated: 2025/02/17 15:33:25 by smclacke      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
+
+COMPOSE = ./srcs/docker-compose.yml
 
 all		:	build
 
 build	:
-	sudo docker-compose -f srcs/docker-compose.yml up -d --build
+	mkdir -p ${HOME}/data/mariadb
+	mkdir -p ${HOME}/data/wordpress
+	sudo docker-compose -f $(COMPOSE) up --build -d
 
 down	:
-	sudo docker-compose -f srcs/docker-compose.yml down
-
-stop	:
-	sudo docker-compose -f srcs/docker-compose.yml stop
-
-start	:
-	sudo docker-compose -f srcs/docker-compose.yml start
-
-ps	:
-	sudo docker ps
-
-psa :
-	sudo docker ps -a
+	sudo docker-compose -f $(COMPOSE) down
 
 logs	:
-	sudo docker-compose -f srcs/docker-compose.yml logs
+	sudo docker-compose -f $(COMPOSE) logs
 
-clean	: stop
-	sudo docker rm wordpress nginx mariadb
-	sudo docker volume rm wordpress mariadb
-	sudo docker system prune --all
+clean	: down
+	sudo docker system prune -af
+	sudo docker volume prune -f
+	sudo rm -rf ${HOME}/data/mariadb
+	sudo rm -rf ${HOME}/data/wordpress
 
-kill :
-	sudo docker-compose -f srcs/docker-compose.yml kill 
+deepclean	: clean
+	docker stop $(docker ps -qa); docker rm $(docker ps -qa); docker rmi -f $(docker images -qa); docker volume rm $(docker volume ls -q); docker network rm $(docker network ls -q) 2>/dev/null
 
-re	: down up start
+re	: down build
+
+.PHONY: all build down logs clean deepclean re

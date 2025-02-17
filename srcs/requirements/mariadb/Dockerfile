@@ -1,19 +1,14 @@
-
 FROM debian:bullseye
 
-RUN apt-get update -y \
-		&& apt-get install -y mariadb-server \
-		&& apt-get clean
+RUN apt-get update -y && \
+	apt-get install -y mariadb-server && \
+	apt-get install -y curl
 
-COPY mariadb_script.sh /etc/mariadb_script.sh 
-RUN chown mysql:root /etc/mariadb_script.sh 
-RUN chmod +x /etc/mariadb_script.sh
+COPY ./tools/mariadb_script.sh / 
+COPY ./tools/maria_conf.cnf /
 
-COPY maria_conf.cnf /
-
-RUN mkdir -p /var/run/mysqld; chown -R mysql:root /var/run/mysqld
+RUN chmod +x /mariadb_script.sh
 
 EXPOSE 3306
 
-ENTRYPOINT [ "/etc/mariadb_script.sh" ]
-CMD [ "mysqld" ]
+CMD [ "/mariadb_script.sh" ]

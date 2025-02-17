@@ -1,29 +1,17 @@
-FROM	debian:bullseye
+FROM debian:bullseye
 
-RUN		apt-get update \
-			&& apt-get upgrade \
-			&& apt-get install -y nginx openssl
+RUN	apt-get update -y && \
+	apt-get upgrade -y && \
+	apt-get install -y nginx openssl -y
 
-RUN	openssl req \
-	-newkey rsa:4096  \
-	-x509 \
-	-sha256 \
-	-days 365 \
-	-nodes \
-	-out /etc/ssl/certs/smclacke.42.fr.crt \
-	-keyout /etc/ssl/private/smclacke.42.fr.key \
-	-subj "/C=NL/ST=Noord Holland/L=Amsterdam/O=Codam/OU=Sarah/CN=smclacke"
+RUN mkdir -p /etc/nginx/ssl && \
+	chmod 700 /etc/nginx/ssl
 
-COPY	nginx.conf /etc/nginx/conf.d/nginx.conf
-RUN 	mkdir -p /run/nginx
-COPY 	nginx_script.sh /etc/nginx_script.sh
-RUN 	chmod +x /etc/nginx_script.sh
+COPY	./tools/nginx.conf /etc/nginx/conf.d/default.conf
+COPY 	./tools/nginx_script.sh /
+
+RUN 	chmod +x /nginx_script.sh
 
 EXPOSE 	443
 
-# makes nginx run in foreground to keep container running
-# nginx - command
-# -g - sets globally 
-# daemon off - foreground or background container, off = running in foreground
-ENTRYPOINT ["/etc/nginx_script.sh"]
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["/nginx_script.sh"]
