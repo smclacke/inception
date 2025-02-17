@@ -2,7 +2,7 @@ FROM	debian:bullseye
 
 RUN		apt-get update \
 			&& apt-get upgrade \
-			&& apt-get install -y nginx openssl curl wget
+			&& apt-get install -y nginx openssl
 
 RUN	openssl req \
 	-newkey rsa:4096  \
@@ -14,11 +14,10 @@ RUN	openssl req \
 	-keyout /etc/ssl/private/smclacke.42.fr.key \
 	-subj "/C=NL/ST=Noord Holland/L=Amsterdam/O=Codam/OU=Sarah/CN=smclacke"
 
-RUN 	mkdir /etc/nginx/ssl
 COPY	nginx.conf /etc/nginx/conf.d/nginx.conf
 RUN 	mkdir -p /run/nginx
-COPY 	entrypoint.sh /etc/entrypoint.sh
-RUN 	chmod +x /etc/entrypoint.sh
+COPY 	nginx_script.sh /etc/nginx_script.sh
+RUN 	chmod +x /etc/nginx_script.sh
 
 EXPOSE 	443
 
@@ -26,5 +25,5 @@ EXPOSE 	443
 # nginx - command
 # -g - sets globally 
 # daemon off - foreground or background container, off = running in foreground
-ENTRYPOINT ["/etc/entrypoint.sh"]
+ENTRYPOINT ["/etc/nginx_script.sh"]
 CMD ["nginx", "-g", "daemon off;"]

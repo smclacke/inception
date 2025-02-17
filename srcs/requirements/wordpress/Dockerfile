@@ -5,9 +5,9 @@ RUN		apt-get update -y \
 			wget \
 			curl \
 			bash \
-			php \
-			php-mysql \
-			php-fpm \
+			php7.4 \
+			php7.4-mysql \
+			php7.4-fpm \
 			mariadb-client
 
 COPY	entrypoint.sh /etc/entrypoint.sh

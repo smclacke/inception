@@ -15,11 +15,15 @@ else
 	wp core download --path="/var/www/html" --allow-root
 fi
 
+
 if [ -f /var/www/html/wp-config.php ]
 then
 	echo "wordpress already configured"
 else
 	echo "creating wordpress config..."
+	until mysqladmin -hmariadb -u${MARIADB_USER} -p${MARIADB_PASSWORD} ping; do
+		sleep 2
+	done
 
 	cd /var/www/html
 	wp config create --path="/var/www/html" \
@@ -44,6 +48,7 @@ else
 
 	wp user create "$WORDPRESS_USER_NAME" user@user.com \
 					 --path="/var/www/html" \
+					 --role=editor \
 					 --allow-root
 fi
 
