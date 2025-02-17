@@ -5,7 +5,7 @@ touch /run/php/php7.4-fpm.pid;
 chown -R www-data:www-data /var/www/*;
 chown -R 755 /var/www/*;
 
-if [ -f wp-config.php ]; then
+if [ ! -f wp-config.php ]; then
 
 	curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
 	chmod +x wp-cli.phar
@@ -34,7 +34,7 @@ if [ -f wp-config.php ]; then
 	
 	echo "Creating WP Admin"
 	wp core install \
-		--path="/var/www/htmlwordpress/" \
+		--path="/var/www/html/wordpress/" \
 		--url="${DOMAIN_NAME}" \
 		--title="inception" \
 		--admin_user="${WORDPRESS_ADMIN_NAME}" \
