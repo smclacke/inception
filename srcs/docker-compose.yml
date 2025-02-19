@@ -5,7 +5,6 @@ services:
     image: mariadb
     volumes:
       - mariadb:/var/lib/mysql
-    #command: mysqld --defaults-file=/etc/mysql/mariadb.conf.d/50-server.cnf --bind-address=0.0.0.0
     networks:
       - inception
     env_file:
