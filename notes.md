@@ -1,8 +1,17 @@
 
 **INFO**
 
+-----------------------------------------------------------------
 **check nginx ports**
-netstat -tulpn | grep 443
+curl https://smclacke.42.fr:<port> -k (-k because sercurity)
+
+**test mariadb**
+mysql -u <user> -p
+SELECT user, host FROM mysql.user;
+SHOW DATABASES;
+SHOW GRANTS FOR '<user>'@'%';
+-----------------------------------------------------------------
+
 
 **cert locations:**
 /etc/nginx/ssl/selfsigned.crt
@@ -77,7 +86,7 @@ down --rmi <all/local>: down and remove images
 docker run --name nginx-test -p 8080:80 -d nginx
 
 **stuff i want in vm**
-sudo -
+sudo
 make 
 ufw 
 docker 
@@ -94,5 +103,5 @@ apt-get install systemd -
  -- for systemctl command
 
 **important**
-/etc/hosts - change file so locahost has smclacken.42.fr also -
+/etc/hosts - change file so locahost also has smclacken.42.fr
 
