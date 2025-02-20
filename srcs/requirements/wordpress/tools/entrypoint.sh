@@ -44,7 +44,7 @@ if [ ! -f wp-config.php ]; then
 		--allow-root
 
 	echo "Creating WP User"
-	wp user create ${WORDPRESS_USER_NAME} ${WORDPRESS_ADMIN_EMAIL} \
+	wp user create ${WORDPRESS_USER_NAME} ${WORDPRESS_USER_EMAIL} \
 		--path="/var/www/html/wordpress/" \
 		--user_pass="${WORDPRESS_USER_PASSWORD}" \
 		--role=editor \
