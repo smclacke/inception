@@ -6,13 +6,20 @@
 #    By: smclacke <smclacke@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2025/01/17 19:17:58 by smclacke      #+#    #+#                  #
-#    Updated: 2025/02/20 17:07:04 by smclacke      ########   odam.nl          #
+#    Updated: 2025/02/20 17:44:20 by smclacke      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
 COMPOSE = ./srcs/docker-compose.yml
+ENV_FILE = ./srcs/.env
 
-all		:	build
+all		:	check_env build
+
+check_env	:
+	@if [ ! -f $(ENV_FILE) ]; then \
+		echo "error: no env file found!"; \
+		exit 1; \
+	fi
 
 build	:
 	mkdir -p /home/smclacke/data/mariadb
