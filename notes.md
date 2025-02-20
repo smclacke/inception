@@ -2,8 +2,8 @@
 **INFO**
 
 **cert locations:**
-ssl: /etc/ssl/certs/smclacke.42.fr.crt
-ssl: /etc/ssl/priavte/smclacke.42.fr.key
+/etc/nginx/ssl/selfsigned.crt
+/etc/nginx/ssl/selfsigned.key
 
 **error logs:**
 sudo tail -f /var/log/php7.4-fpm.log
@@ -70,27 +70,22 @@ down --volumes: down and remove volumes
 down --rmi <all/local>: down and remove images
 
 
-
 **TEST nginx on its own in container**
 docker run --name nginx-test -p 8080:80 -d nginx
 
 **stuff i want in vm**
 sudo -
-make -
-ufw -
-docker -
-docker-compose -
-ssh / sshd -
-
-ssl ?
-make user certs?
-
-mkcerts -
-hosts -> add smclacke.42.fr to localhost -
-git -
-github -
-second browser -
-vscode -
+make 
+ufw 
+docker 
+docker-compose 
+ssh / sshd 
+mkcerts 
+hosts -> add smclacke.42.fr to localhost 
+git 
+github 
+second browser 
+vscode 
 
 apt-get install systemd -
  -- for systemctl command
@@ -98,4 +93,3 @@ apt-get install systemd -
 **important**
 /etc/hosts - change file so locahost has smclacken.42.fr also -
 
-**TODO**
