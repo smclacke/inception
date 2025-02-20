@@ -6,7 +6,7 @@
 #    By: smclacke <smclacke@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2025/01/17 19:17:58 by smclacke      #+#    #+#                  #
-#    Updated: 2025/02/20 14:43:35 by smclacke      ########   odam.nl          #
+#    Updated: 2025/02/20 15:00:05 by smclacke      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,9 +42,6 @@ cleanVolumes	:
 
 cleanNetwork	:
 	sudo docker network rm inception
-
-#deepclean
-#docker stop $(docker ps -qa); docker rm $(docker ps -qa); docker rmi -f $(docker images -qa); docker volume rm $(docker volume ls -q); docker network rm $(docker network ls -q) 2>/dev/null
 
 re	: clean build
 

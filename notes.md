@@ -1,6 +1,9 @@
 
 **INFO**
 
+**check nginx ports**
+netstat -tulpn | grep 443
+
 **cert locations:**
 /etc/nginx/ssl/selfsigned.crt
 /etc/nginx/ssl/selfsigned.key
